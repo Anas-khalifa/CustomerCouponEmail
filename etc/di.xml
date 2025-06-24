@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Anas\CustomerCoupon\Observer\CustomerRegisterObserver">
+        <arguments>
+            <argument name="couponRepository" xsi:type="object">Magento\SalesRule\Model\CouponRepository</argument>
+            <argument name="couponInterfaceFactory" xsi:type="object">Magento\SalesRule\Api\Data\CouponInterfaceFactory</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Customer\Model\EmailNotification">
+        <plugin name="disable_default_welcome_email" type="Anas\CustomerCoupon\Plugin\DisableWelcomeEmail" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\SalesRule\Model\Validator">
+        <plugin name="restrict_coupon_to_customer" type="Anas\CustomerCoupon\Plugin\RestrictCouponToCustomer" sortOrder="10"/>
+    </type>
+
+</config>
